@@ -111,7 +111,7 @@ console.log(removedLastFruit,removedFirstFruit); // banana strawberry
 ```
 </br>
 
-### slice(start,end), splice(startIndex,deleteCount,...items), toSpliced()
+### slice(start,end),   splice(startIndex,deleteCount,...items),   toSpliced()
 ```js
 // arr.slice(start,end) -- copy a portion of an array. Dont change original array
 console.log(fruits);              // [ 'apples', 'orange', true, 45, 'mangos' ]
@@ -134,7 +134,7 @@ console.log(fruits);              // [ 'apples', 'orange', true, 45, 'mangos' ]
 ```
 <br/>
  
-### Merge -- concat() , spread operator: ...
+### Merge -- arr.concat() , spread operator: ...
 
 ```js
 //concat
@@ -147,22 +147,23 @@ const overallFood= breafast.concat(lunch,dinner,'biscuits');
 //spreadOperator
 const overallFood_SpreadOperator=[...breakfast, ...lunch, ...dinner, 'juice'];
 ```
+</br>
 
-### forEach() -- callbackfn: performs an action (no return).
+### arr.forEach() -- callbackfn: performs an action (no return).
 ```js
 fruits.forEach((fruit)=> console.log(fruit));
 fruits.forEach((fruit)=> console.log(fruit.toUpperCase));
 ```
 </br>
 
-### map() -- transforms and returns a new array.
+### arr.map() -- transforms and returns a new array.
 ```js
 const numbers=[1,2,4];
 const multiplied= numbers.map((num)=> {
     return num*2;
 });
 const multiplied1= numbers.map((num)=>num*2); // No return in one line
-console.log(multiplied, multiplied1);
+console.log(multiplied, multiplied1); //[2,4,8] [2,4,8]
 ```
 
 ###
