@@ -78,7 +78,7 @@ empty --> split by letter
 Creating Array:  
 
 ```js
-const numbers = new Array(1, 2, 3, 4, 5);
+const numbers = new Array(1, 2, 3, 4, 5); // const numbers= [1,2,3,4,5];
 ```
 ```js
 console.log(numbers); // [1, 2, 3, 4, 5]
@@ -88,18 +88,88 @@ Mixed Datatype Array
 
 ```js
 const fruits = ['apples', 'pears', true, 45];
+console.log(fruits); // ['apples', 'pears', true, 45]
+console.log(fruits.toString()); // apples,orange,true,45
 ```
-Array Operations:  
+</br>
+
+## 4. Array Methods   
+
+### modify, add, remove  
 
 ```js
-fruits[1] = 'orange';        // Change value: [ 'apples', 'orange', true, 45 ]
-fruits.push('mangos');       // Add to end: [ 'apples', 'orange', true, 45, 'mangos' ]
-fruits.unshift('strawberry'); // Add to start: [ 'strawberry', 'apples', 'orange', true, 45, 'mangos' ]
-fruits.pop();                // Remove last element and return remaining
+fruits[1] = 'orange';          // Change value: [ 'apples', 'orange', true, 45 ]
+
+
+fruits.push('mangos','banana'); // Add to end: [ 'apples', 'orange', true, 45, 'mangos', 'banana' ]
+fruits.unshift('strawberry');  // Add to start: [ 'strawberry', 'apples', 'orange', true, 45, 'mangos', 'banana']
+
+
+const removedLastFruit=fruits.pop();      // Remove last element and return remaining
+const removedFirstFruit=fruits.shift();   // Remove first element and return remaining
+console.log(removedLastFruit,removedFirstFruit); // banana strawberry
+```
+</br>
+
+### slice(start,end), splice(startIndex,deleteCount,...items), toSpliced()
+```js
+// arr.slice(start,end) -- copy a portion of an array. Dont change original array
+console.log(fruits);              // [ 'apples', 'orange', true, 45, 'mangos' ]
+const myFruit1=fruits.slice(1,3); // from 1 to 2
+console.log(myFruit1);            // [ 'orange', true ]
+console.log(fruits);              // [ 'apples', 'orange', true, 45, 'mangos' ]
+
+//arr.splice(startIndex,deleteCount,...items) -- modifies the original array and returns the deleted elements
+const myFruit2=fruits.splice(1,3,'berry');// from 1 to 3 remove in original array
+console.log(myFruit2);            // [ 'orange', true, 45 ]
+console.log(fruits);              // [ 'apples', 'berry', 'mangos' ]
+
+//arr.toSpliced(startIndex,deleteCount,...items) -- creates a new array with the changes while leaving the original untouched
+const myFruit3=fruits.toSpliced(1,3,'rambutan');// from 1 to 3 
+console.log(myFruit3);            // [ 'apple','rambutan','mangos']
+console.log(fruits);              // [ 'apples', 'orange', true, 45, 'mangos' ]
+
+// ie, myfruit2 is deleted & fruits is modified.
+//     myfruit3 is modified & fruits is original.
+```
+<br/>
+ 
+### Merge -- concat() , spread operator: ...
+
+```js
+//concat
+const breakfast =['Dosa', 'Idly'];
+const lunch = ['briyani', 'Egg'];
+const dinner= ['fried rice', 'tea'];
+
+const overallFood= breafast.concat(lunch,dinner,'biscuits');
+
+//spreadOperator
+const overallFood_SpreadOperator=[...breakfast, ...lunch, ...dinner, 'juice'];
+```
+
+### forEach() -- callbackfn: performs an action (no return).
+```js
+fruits.forEach((fruit)=> console.log(fruit));
+fruits.forEach((fruit)=> console.log(fruit.toUpperCase));
+```
+</br>
+
+### map() -- transforms and returns a new array.
+```js
+const numbers=[1,2,4];
+const multiplied= numbers.map((num)=> {
+    return num*2;
+});
+const multiplied1= numbers.map((num)=>num*2); // No return in one line
+console.log(multiplied, multiplied1);
+```
+
+###
 console.log(Array.isArray(fruits));        // true
 console.log(Array.isArray('strawberry'));  // false -- other than fruits anything--> false
 console.log(fruits.indexOf('apples'));     // 1
-```
+
 ```js
 console.log(fruits);                       // ['strawberry', 'apples', 'orange', true, 45]
 ```
