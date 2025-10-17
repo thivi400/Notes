@@ -152,7 +152,7 @@ const overallFood_SpreadOperator=[...breakfast, ...lunch, ...dinner, 'juice'];
 ### arr.forEach() -- callbackfn: performs an action (no return).
 ```js
 fruits.forEach((fruit)=> console.log(fruit));
-fruits.forEach((fruit)=> console.log(fruit.toUpperCase));
+fruits.forEach((fruit)=> console.log(fruit.toUpperCase());
 ```
 </br>
 
@@ -165,16 +165,200 @@ const multiplied= numbers.map((num)=> {
 const multiplied1= numbers.map((num)=>num*2); // No return in one line
 console.log(multiplied, multiplied1); //[2,4,8] [2,4,8]
 ```
+</br>
 
-###
-console.log(Array.isArray(fruits));        // true
-console.log(Array.isArray('strawberry'));  // false -- other than fruits anything--> false
-console.log(fruits.indexOf('apples'));     // 1
+console.log(Array.isArray(fruits));        // true </br>
+console.log(Array.isArray('strawberry'));  // false -- other than fruits anything--> false </br>
+console.log(fruits.indexOf('apples'));     // 1 </br>
 
 ```js
 console.log(fruits);                       // ['strawberry', 'apples', 'orange', true, 45]
 ```
 </br>
+
+
+## 4.Functions  
+</br>
+
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>Feature</th>
+<th>Normal Function</th>
+<th>Arrow Function</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td>1</td>
+<td><b>Syntax</b></td>
+<td>
+
+```js
+function add(a, b) {
+  return a + b;
+}
+```
+</td>
+<td>
+ 
+```js
+const add = (a, b) => a + b;
+```
+</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td><b><code>this</code> keyword</b></td>
+<td>
+ 
+```js
+const obj = {
+  name: "Pubs",
+  say: function() {
+    console.log(this.name);
+  }
+};
+obj.say(); // Pubs
+```
+</td>
+<td>
+ 
+```js
+const obj = {
+  name: "Pubs",
+  say: () => {
+    console.log(this.name);
+  }
+};
+obj.say(); // undefined
+```
+</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td><b><code>arguments</code> object</b></td>
+<td>
+ 
+```js
+function sum() {
+  console.log(arguments);
+}
+sum(1, 2, 3); // [1, 2, 3]
+```
+</td>
+<td>
+ 
+```js
+const sum = () => {
+  console.log(arguments);
+}; // ❌ ReferenceError
+```
+</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td><b>Hoisting</b></td>
+<td>
+ 
+```js
+sayHi(); // works
+function sayHi() {
+  console.log("Hi");
+}
+```
+</td>
+<td>
+ 
+```js
+sayHi(); // ❌ Error
+const sayHi = () => console.log("Hi");
+```
+</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td><b>Use with <code>new</code> (constructor)</b></td>
+<td>
+ 
+```js
+function Car() {}
+```
+</td>
+<td>
+ 
+```js
+const Car = () => {};
+new Car(); // ❌ TypeError
+```
+</td>
+</tr>
+
+<tr>
+<td>6</td>
+<td><b>Best for...</b></td>
+<td>Object methods, constructors</td>
+<td>Callbacks, short helper functions</td>
+</tr>
+
+<tr>
+<td>7</td>
+<td><b>Line style</b></td>
+<td>
+ 
+```js
+function square(x) {
+  return x * x;
+}
+```
+</td>
+<td>
+ 
+```js
+const square = x => x * x;
+```
+</td>
+</tr>
+
+<tr>
+<td>8</td>
+<td><b><code>prototype</code> property</b></td>
+<td>
+ 
+```js
+function fn() {}
+console.log(fn.prototype); // {}
+```
+</td>
+<td>
+ 
+```js
+const fn = () => {};
+console.log(fn.prototype); // undefined
+```
+</td>
+</tr>
+
+</tbody>
+</table>
+
+### ✅ Summary
+
+| Prefer `function` when… | Prefer `=>` when… |
+|--------------------------|-------------------|
+| You need your own `this` or `arguments` | You want shorter code / inline logic |
+| You’re defining object/class methods | You’re writing callbacks (like `map`, `setTimeout`) |
+| You use `new` for object creation |  You’re using `map`, `filter`, `reduce`  |
+| You’re creating a constructor |  |
+
+
+###
 
 #🧾 Summary
 
