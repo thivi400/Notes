@@ -22,7 +22,7 @@ Source: Scrimba React Course
 
 ## 2️⃣ JSX and Rendering Notes
 - Use curly braces {} to insert JS inside JSX. Can be variables, functions, or calculations.
-- Use className instead of class for CSS classes.
+- Use **className** instead of **class** for CSS classes.
 - JSX expressions must be closed properly (e.g., <img />).
 - You can create reusable UI with functions that return JSX.
 - Cannot use if statements directly inside JSX — use ternary or conditional rendering.
@@ -34,7 +34,57 @@ Source: Scrimba React Course
 | **Composable** | Build UIs from small reusable components | `<Header /><Main /><Footer />` |
 | **Declarative** | Describe what UI should look like based on state | `{isDarkMode ? "Dark" : "Light"}` |
 <br>
-   
+
+## 🧠 Quiz -- try to answer by yourself
+
+
+Q1. Where does React put all of the elements I create in JSX when I call `root.render()`? 
+
+**Answer:**     
+All the elements I render get put inside the div with the id of "root" (or whatever other element I might select when calling createRoot)
+<br>
+<br>
+
+Q2. What would show up in my console if I were to run this line of code:
+```
+console.log(<h1>Hello world!</h1>)
+```
+
+**Answer:**     
+An object! (Hello world!)   
+Unlike creating an HTML element in vanilla DOM JS, what gets created from the JSX we have in our React code is a plain JS object that React will use to fill in the view.
+<br>
+<br>
+
+Q3. What's wrong with this code:
+```
+root.render(
+        <h1>Hi there</h1>
+        <p>This is my website!</p>
+)
+```
+
+**Answer:**    
+You can only render 1 parent element at a time. That parent element can have as many children elements as you want.   
+wrap it under ```<section> </section>```
+<br>
+<br>
+
+Q4. What does it mean for something to be "declarative" instead of "imperative"?
+
+**Answer:**    
+```Imperative``` --> we need to give specific step-by-step instructions on how to accomplish a task.   
+```Declarative``` -->  we can write our code to simply "describe" *what* should show up on the page and allow the rool (React, e.g.) to handle the details on *how* to put those things on the page.
+<br>
+<br>
+
+Q5. What does it mean for something to be "composable"?
+
+**Answer:**    
+We have small pieces that we can put together to make something larger or greater than the individual pieces themselves.
+<br>   
+<br>   
+
 ## 3️⃣ Components Notes
 - Components are reusable pieces of UI.
 - In React, a component is just a JavaScript function that returns JSX.
@@ -61,10 +111,61 @@ function App() {
     </div>
 )
 ```
-Export components with ```export default ComponentName``` if you use them in separate files.   
+If you use them in separate files, export components with 
+```jsx
+export default ComponentName(){
+   return()
+}
+```
+     
 <br>
-    
+
+## 🧠 Quiz -- try to answer by yourself
+
+
+Q1. What is a React component?
+
+**Answer:**  
+A function that returns React elements. (UI)   
+<br>
+<br>
+
+Q2. What's wrong with this code?
+```
+function myComponent() {
+    return (
+        <small>I'm tiny text!</small>
+    )
+}
+```
+
+**Answer:**     
+MyComponent -- First letter must Capital
+<br>
+<br>
+
+Q3. What's wrong with this code?
+```
+function Header() {
+    return (
+        <header>
+            <img src="./react-logo.png" width="40px" alt="React logo" />
+        </header>
+    )
+}
+
+root.render(Header())
+```
+
+**Answer:**  
+```root.render(<Header/>)```
+<br>
+<br>
+<hr>
+<br>
+
 ## ⚙️ Initial Setup
+
 **index.html**
 ```html
 <head>
@@ -79,7 +180,9 @@ Export components with ```export default ComponentName``` if you use them in sep
 </body>
 </html>
 ```
-Everything we doing will wrapped in the root element div.
+Everything we doing will wrapped in the root element div. 
+<br>
+<br>
 
 **index.jsx**
 ```jsx
@@ -91,6 +194,9 @@ root.render(
     <App />
 );
 ```
+<br>
+<br>
+
 **App.jsx**
 ```jsx
 import "./index.css"
@@ -100,36 +206,76 @@ export default function App(){
     </>
 }
 ```
+<br>
+<br>
+
+```index.js``` ==> Setting up things like root
+```App.js``` ==> Parent to every Component
+<br>
+<br>
+<br>
+<hr>
+<br>
+
+# 📝 Data-Driven React -- Reusable components
+
+## 4️⃣ Props (Properties)
+
+- Props are how components receive data.
+- Think of props as function parameters for components.
+- They make components dynamic and reusable.
+- Props are read-only; they cannot be modified by the child component.
+- Use object destructuring to extract specific props.
+- Props flow one-way — from parent to child.
+- Components can receive any kind of data as props: strings, numbers, arrays, objects, or even functions.
+
+
+<br>
 
 ## 🧠 Quiz -- try to answer by yourself
-1. Where does React put all of the elements I create in JSX when I call `root.render()`?
-
-All the elements I render get put inside the div with the id of "root" (or whatever other element I might select when calling createRoot)
 <br>
 
-2. What would show up in my console if I were to run this line of code:
-```
-console.log(<h1>Hello world!</h1>)
-```
-An object! (Hello world!)   
-Unlike creating an HTML element in vanilla DOM JS, what gets created from the JSX we have in our React code is a plain JS object that React will use to fill in the view.
+Q1. What do props help us accomplish?
+
+**Answer:**    
+Make a component more reusable.
+<br>
 <br>
 
-3. What's wrong with this code:
-```
-root.render(
-        <h1>Hi there</h1>
-        <p>This is my website!</p>
-)
-```
-You can only render 1 parent element at a time. That parent element can have as many children elements as you want.   
-wrap it under ```<section> </section>```
+Q2. How do you pass a prop into a component?
+
+**Answer:**    
+```<MyAwesomeHeader title="???" />```
+<br>
 <br>
 
-4. What does it mean for something to be "declarative" instead of "imperative"?
-*Imperative* --> we need to give specific step-by-step instructions on how to accomplish a task.
-*Declarative* -->  we can write our code to simply "describe" *what* should show up on the page and allow the rool (React, e.g.) to handle the details on *how* to put those things on the page.
+Q3. Can I pass a custom prop (e.g. `blahblahblah={true}`) to a native DOM element? (e.g.```<div blahblahblah={true}>```) Why or why not?
+
+**Answer:**    
+No, because the JSX we use to describe native DOM elements will be turned into REAL DOM elements by React. And real DOM elements only have the properties/attributes specified in the HTML specification.   
+(Which doesn't include properties like `blahblahblah`)
+<br>
 <br>
 
-5. What does it mean for something to be "composable"?
-We have small pieces that we can put together to make something larger or greater than the individual pieces themselves.
+Q4. How do I receive props in a component?
+
+**Answer:**  
+```
+function Navbar(props) {
+    console.log(props.blahblahblah)
+    return (
+        <header>
+            ...
+        </header>
+    )
+}
+```
+<br>
+<br>
+
+Q5. What data type is `props` when the component receives it?
+
+**Answer:**    
+An object!
+<br>
+<br>
