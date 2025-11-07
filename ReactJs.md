@@ -1,11 +1,10 @@
-# 📘 React Notes (Lessons 1–4)
-## Source: Scrimba React Course
+# 📘 React Notes 
+Source: Scrimba React Course
 
 ---
 
 ## 1️⃣ Introduction to React
 
-### 🧠 Concept Summary
 - **React** is a **JavaScript library** for building dynamic user interfaces.
 - Developed by **Facebook (Meta)**.
 - Focuses on building **reusable components**.
@@ -17,14 +16,17 @@
 - **JSX (JavaScript XML)** lets you write HTML-like syntax directly in JavaScript.
 - **ReactDOM** renders components to the page.
 
-### ⚙️ Example
-```jsx
-import React from "react";
-import ReactDOM from "react-dom/client";
+### Initial Setup
 
+**indes.jsx**
+```jsx
+import {createRoot} from "react-dom/client";
+import App from "./App.jsx"
+
+const root = createRoot(doctument.getElementById("root"))
 function App() {
   return <h1>Hello React!</h1>;
 }
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(<App />);
