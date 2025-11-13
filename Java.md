@@ -17,7 +17,7 @@ public class Main {
 
 ### Allowed variable naming
 ```$myName``` But don't prefer this. <br>
-```_myName```
+```_myName``` <br>
 <br>
 
 ## 1. Data types
@@ -157,4 +157,90 @@ double gpa=3.45;    // %f
 char symbol='%';    // %c
 boolean surity=true;    // %b
 System.out.printf("My name is %s. I am %d years. My gpa %.2f. These are 100 %c %b",name,age,gpa,symbol,surity);
+```
+<br>
+
+## 6. Input 
+```java
+import java.util.Scanner;
+
+public class learn{
+    public static void main (String[] args){
+        Scanner scan =new Scanner(System.in);
+
+        System.out.print("Enter your name: ");
+        String name= scan.nextLine();
+        System.out.println("What is your age? ");
+        int age= Integer.parseInt(scan.nextLine());
+        System.out.printf("%s, %d is a nice age. What is the GPA? ",name,age);
+        double gpa= Double.parseDouble(scan.nextLine());
+        System.out.printf("%s, %.2f is bad GPA in this %d years old ",name,gpa,age);
+        }
+}
+```
+Output: 
+```
+Enter your name: Thivi
+What is your age? 
+23
+Thivi, 23 is a nice age. What is the GPA? 3.45
+Thivi, 3.45 is bad GPA in this 23
+```
+<br>
+
+```System.in``` → reads from keyboard <br>
+```scan``` → our input object <br>
+<br>
+
+### Drawback of using `nextInt()` or `nextDouble()`
+
+- `nextLine()` consumes the leftover newline because it reads a **string**.  
+- `nextInt()` or `nextDouble()` **cannot consume the `<enter>` key** because they read numbers (integer or double).  
+- This leftover newline stays in the buffer.  
+- After calling `nextInt()` or `nextDouble()`, if you immediately call `nextLine()`, it **reads the leftover newline** and skips the actual input.  
+- **Workaround:** Use `Integer.parseInt(scan.nextLine())` to read integers from the buffer safely.
+<br>
+
+Alternate method:
+```java
+int age= scan.nextDouble();
+scan.nextLine();
+```
+Put a `scan.nextLine()` below of nextInt() and nextDouble() <br>
+<br>
+
+## 7. `if-else` and `switch-case`
+
+| Type                                   | Use `==`? | Example         |
+| -------------------------------------- | --------- | --------------- |
+| Primitive (int, double, char, boolean) | ✅ Yes     | `if (x == 5)`   |
+| Object (String, arrays, classes)       | ❌ No      | use `.equals()` |
+<br>
+
+```java
+System.out.print("Enter number1: ");
+double num1= scan.nextDouble();
+scan.nextLine();
+System.out.print("Enter number2: ");
+double num2= scan.nextDouble();
+scan.nextLine();
+System.out.print("Enter operation: ");
+String operation= scan.nextLine();
+```
+```java
+if (operation.equals("+")){
+    System.out.printf("%f + %f = %.2f",num1,num2,num1+num2);
+```
+```java
+switch(operation){
+    case "+":
+       System.out.printf("%f + %f = %.2f",num1,num2,num1+num2);
+       break;
+    case "/":
+        if (num2==0) System.out.println("Cannot divide by o");
+        else System.out.printf("%f / %f = %.2f",num1,num2,num1/num2);
+        break;
+    default:
+        System.out.printf("%s is not defined operation",operation);
+}
 ```
